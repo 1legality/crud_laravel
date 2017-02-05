@@ -17,7 +17,7 @@ class PostsController extends Controller
     {
         $user = Auth::user();
         $posts = Post::all()->where('user_id', $user->id);
-        return view('posts.index', compact('posts'));
+        return view('posts.index', compact('posts', 'user'));
     }
 
     /**
@@ -49,7 +49,10 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = Auth::user();
+//        $posts = Post::all()->where('user_id', $user->id);
+        $post = Post::findOrFail($id);
+        return view('posts.view', compact('post', 'user'));
     }
 
     /**
