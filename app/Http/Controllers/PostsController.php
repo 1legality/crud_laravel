@@ -16,7 +16,7 @@ class PostsController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $posts = Post::all()->where('user_id', $user->id);
+        $posts = Post::all()->where('user_id', $user->id)->sortByDesc('created_at');
         return view('posts.index', compact('posts', 'user'));
     }
 
@@ -38,7 +38,18 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        return $request;
+
+        $user = Auth::user();
+
+        $Post = new Post;
+        $Post->user_id = $user->id;
+        $Post->text = $request->text;
+
+        $Post->save();
+        $posts = Post::all()->where('user_id', $user->id)->sortByDesc('created_at');
+
+        return view('posts.index', compact('posts', 'user'));
     }
 
     /**
