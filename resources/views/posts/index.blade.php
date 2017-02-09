@@ -13,20 +13,23 @@
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/posts') }}">
                             {{ csrf_field() }}
 
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                {{--<label for="email" class="col-md-4 control-label">E-Mail Address</label>--}}
+                            {{--<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                --}}{{--<label for="email" class="col-md-4 control-label">E-Mail Address</label>--}}{{--
 
                                 <div class="col-md-6">
 
                                 </div>
-                            </div>
+                            </div>--}}
 
                             <textarea id="text" type="text" class="form-control" name="text" value="{{ old('text') }}" required autofocus></textarea></br>
 
-                            @if ($errors->has('email'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                            @if ($errors->has('text'))
+                                <div class="panel panel-danger text-center">
+                                    <div class="panel-heading">{{ $errors->first('text') }}</div>
+                                </div>
+                                {{--<span class="help-block">
+                                        <strong>{{ $errors->first('text') }}</strong>
+                                </span>--}}
                             @endif
 
                             <div class="form-group">

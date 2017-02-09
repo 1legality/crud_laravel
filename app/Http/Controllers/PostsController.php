@@ -39,6 +39,11 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            /*'title' => 'required|unique:posts|max:255',*/
+            'text' => 'required|unique:posts|max:160',
+        ]);
+
         $user = Auth::user();
 
         $Post = new Post;
