@@ -2,11 +2,13 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container" xmlns="http://www.w3.org/1999/html">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">What's on your mind?</div>
+                    <div class="panel-heading">
+                        What's on your mind?
+                    </div>
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/posts') }}">
                             {{ csrf_field() }}
@@ -44,7 +46,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default text-center">
+                <div class="panel panel-primary text-center">
                     <div class="panel-heading"><h3>{{$user->name}}'s awesome posts</h3></div>
                 </div>
             </div>
@@ -59,11 +61,18 @@
                     <div class="panel-body">
                         <label for="created_at" class="control-label">Created at</label>
                         @if ($post->created_at != null)
-                            {{$post->created_at->toDayDateTimeString()}}<br>
+                            {{$post->created_at->toDayDateTimeString()}}
                         @else
-                            <i>No date provided</i><br>
+                            <i>No date provided</i>
                         @endif
-                        {{$post->text}}<br>
+                        <div class="pull-right">
+                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/posts/' . $post->id) }}">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-default">X</button>
+                            </form>
+                        </div>
+                        <div class="panel-body">{{$post->text}}</div>
                         <a href="/posts/{{$post->id}}">view comments</a>
                     </div>
                 </div>

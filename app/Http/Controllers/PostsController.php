@@ -38,8 +38,6 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-//        return $request;
-
         $user = Auth::user();
 
         $Post = new Post;
@@ -61,7 +59,6 @@ class PostsController extends Controller
     public function show($id)
     {
         $user = Auth::user();
-//        $posts = Post::all()->where('user_id', $user->id);
         $post = Post::findOrFail($id);
         return view('posts.view', compact('post', 'user'));
     }
@@ -97,6 +94,12 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Auth::user();
+
+        $Post = Post::findOrFail($id);
+        $Post->delete();
+        $posts = Post::all()->where('user_id', $user->id)->sortByDesc('created_at');
+
+        return view('posts.index', compact('posts', 'user'));
     }
 }
