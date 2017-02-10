@@ -40,4 +40,4 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
 ## Crud operations in Laravel
-[I am following Edin turorials from udemy](https://udemy.com/php-with-laravel-for-beginners-become-a-master-in-laravel)
+[I am following Edwin Diaz's turorials from udemy](https://udemy.com/php-with-laravel-for-beginners-become-a-master-in-laravel)
